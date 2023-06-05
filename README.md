@@ -15,3 +15,22 @@ DB_NAME=your_database_name
 DB_USER=your_database_username
 DB_PASSWORD=your_database_password
 ```
+
+
+The dB will look like this with following tables:
+```
+CREATE TABLE invoices (
+  id SERIAL PRIMARY KEY,
+  customer_id VARCHAR(255) NOT NULL,
+  amount NUMERIC(10, 2) NOT NULL,
+  due_date DATE NOT NULL
+);
+
+CREATE TABLE invoice_items (
+  id SERIAL PRIMARY KEY,
+  invoice_id INTEGER REFERENCES invoices(id),
+  description VARCHAR(255) NOT NULL,
+  cost NUMERIC(10, 2) NOT NULL,
+  quantity INTEGER NOT NULL
+);
+```
